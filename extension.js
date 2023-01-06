@@ -6,7 +6,7 @@ function activate(context) {
             'placeHolder': 'Enter length',
             'prompt': 'Enter desired string/password length',
             'value': '12'
-        }).then(function(length) {
+        }).then(function (length) {
             if (length === undefined) {
                 vscode.window.showErrorMessage('Please input a positive integer number.')
                 return;
@@ -25,7 +25,7 @@ function activate(context) {
                     'label': 'High Strength - Combination of lower case characters, upper case characters, numbers and special characters',
                     'detail': 'high'
                 }
-            ]).then(function(item) {
+            ]).then(function (item) {
                 var strength = item.detail;
                 var generated_string = generateRandomString(length, strength);
                 // vscode.window.showInformationMessage('Generated string is: ' + generated_string);
@@ -38,7 +38,7 @@ function activate(context) {
         placeTextOnEditor(generated_string);
     });
     var disposableMediumPassword = vscode.commands.registerCommand('rspg.mediumPassword', function () {
-        var generated_string = generateRandomString(15, 'medium');
+        var generated_string = generateRandomString(6, 'medium');
         placeTextOnEditor(generated_string);
     });
     var disposableHighPassword = vscode.commands.registerCommand('rspg.highPassword', function () {
@@ -99,7 +99,7 @@ function generateRandomString(length, strength) {
 
     var generated_string = '';
     for (var index = 0; index < length; index++) {
-        generated_string += valid_chars[Math.floor(Math.random()*valid_chars.length)];
+        generated_string += valid_chars[Math.floor(Math.random() * valid_chars.length)];
     }
     return generated_string;
 }
